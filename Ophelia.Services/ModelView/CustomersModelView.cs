@@ -32,6 +32,7 @@ namespace Ophelia.Services.ModelView
 
         public DateTime CreationDate { get; set; }
 
-        public string FullName { get { return $"{Document} - {CustomerNames} {CustomerLastNames}"; } }
+        public string FullName
+        { get { return $"{Document} - {CustomerNames} {CustomerLastNames}"; } }
     }
 }

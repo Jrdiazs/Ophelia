@@ -12,8 +12,6 @@ export class Customers {
   fullName: string;
 }
 
-
-
 export class CustomersResponseList extends BaseResponse {
   data: Customers[];
 }

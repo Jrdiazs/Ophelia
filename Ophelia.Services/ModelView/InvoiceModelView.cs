@@ -19,7 +19,6 @@ namespace Ophelia.Services.ModelView
         [Required]
         public decimal TotalBill { get; set; }
 
-
         public string CustomerName { get; set; }
     }
 }

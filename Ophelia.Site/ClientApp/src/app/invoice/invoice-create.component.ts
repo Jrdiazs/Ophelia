@@ -8,18 +8,11 @@ import { CustomersServices, InvoicesServices, TypeDocumentServices } from '../se
   templateUrl: './invoice-create.component.html'
 })
 export class InvoiceCreateComponent implements OnInit {
-
-
-
   constructor(private customerServices: CustomersServices, private invoiceServices: InvoicesServices) {
-    
   }
 
   ngOnInit() {
-   
   }
-  onFormSubmit(e)
-  {
-    
+  onFormSubmit(e) {
   }
 }

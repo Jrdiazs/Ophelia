@@ -5,7 +5,7 @@ export class TypeDocument {
   typeDocumentName: string;
   typeDocumentNameShort: string;
 }
-export class TypeDocumentResponseList  extends BaseResponse {
+export class TypeDocumentResponseList extends BaseResponse {
   data: TypeDocument[];
 }
 

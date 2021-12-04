@@ -62,7 +62,7 @@ namespace Ophelia.Services
             return response;
         }
 
-        public InvoiceResponseList GetInvoicesSearch(InvoiceFilter request) 
+        public InvoiceResponseList GetInvoicesSearch(InvoiceFilter request)
         {
             var response = new InvoiceResponseList();
             try

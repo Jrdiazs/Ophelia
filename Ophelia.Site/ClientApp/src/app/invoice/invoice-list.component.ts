@@ -9,7 +9,6 @@ import { CustomersServices, InvoicesServices, TypeDocumentServices } from '../se
   templateUrl: './invoice-list.component.html'
 })
 export class InvoiceListComponent implements OnInit {
-
   customers: Customers[] = [];
 
   buttonOptions: any = {
@@ -23,29 +22,23 @@ export class InvoiceListComponent implements OnInit {
   invoices: Invoice[];
 
   constructor(private customerServices: CustomersServices, private invoiceServices: InvoicesServices, private route: Router) {
-    
   }
 
   ngOnInit() {
-    this.customerServices.GetCustomersList().subscribe(result =>
-    {
+    this.customerServices.GetCustomersList().subscribe(result => {
       if (result.success)
-          this.customers = result.data;
+        this.customers = result.data;
     },
       error => console.error(error));
-
-    
   }
-  onFormSubmit(e)
-  {
+  onFormSubmit(e) {
     this.invoiceServices.GetInvoicesSearch(this.invoiceFilter).subscribe(result => {
       if (result.success)
         this.invoices = result.data;
     },
       error => console.error(error));
   }
-  addInvoice(e)
-  {
+  addInvoice(e) {
     this.route.navigate(['/invoice-create'], { queryParams: { id: 0 } });
   }
 }

@@ -12,7 +12,7 @@ namespace Ophelia.Data
         public InvoiceRepository()
         { }
 
-        public List<Invoice> GetInvoicesSearch(int? invoiceNumber, int? customerId) 
+        public List<Invoice> GetInvoicesSearch(int? invoiceNumber, int? customerId)
         {
             try
             {
@@ -22,7 +22,7 @@ namespace Ophelia.Data
                     CustomerId = customerId
                 }, commandType: CommandType.StoredProcedure).ToList();
 
-                return invoices?? new List<Invoice>();
+                return invoices ?? new List<Invoice>();
             }
             catch (Exception)
             {

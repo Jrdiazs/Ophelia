@@ -14,8 +14,8 @@ import { InvoiceCreateComponent } from './invoice/invoice-create.component';
 
 //dev express
 import {
-  DxButtonModule, DxDataGridModule, DxSelectBoxModule, DxTemplateModule, DxNumberBoxModule, DxTextBoxModule, DxFormModule, DxFormComponent } from 'devextreme-angular';
-
+  DxButtonModule, DxDataGridModule, DxSelectBoxModule, DxTemplateModule, DxNumberBoxModule, DxTextBoxModule, DxFormModule, DxFormComponent
+} from 'devextreme-angular';
 
 @NgModule({
   declarations: [
