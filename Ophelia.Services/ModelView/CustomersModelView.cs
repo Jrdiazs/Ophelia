@@ -28,7 +28,6 @@ namespace Ophelia.Services.ModelView
         [MaxLength(200)]
         public string Email { get; set; }
 
-
         public DateTime? BirthdayDate { get; set; }
 
         public DateTime CreationDate { get; set; }

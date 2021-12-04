@@ -18,11 +18,11 @@ namespace Ophelia.Site.Controllers
 
         [HttpGet]
         [Route("GetTypeDocuments")]
-        public TypeDocumentResponseList GetTypeDocuments() 
+        public TypeDocumentResponseList GetTypeDocuments()
         {
-           
             try
-            {   var typeDocuments = _services.GetTypeDocuments();
+            {
+                var typeDocuments = _services.GetTypeDocuments();
                 return typeDocuments;
             }
             catch (Exception)

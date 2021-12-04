@@ -13,7 +13,6 @@ namespace Ophelia.Models
         [Column("TypeDocumentName")]
         public string TypeDocumentName { get; set; }
 
-
         [Column("TypeDocumentNameShort")]
         public string TypeDocumentNameShort { get; set; }
     }

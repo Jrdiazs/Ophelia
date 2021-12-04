@@ -16,13 +16,13 @@ namespace Ophelia.Services
             _invoiceRepository = invoiceRepository ?? throw new ArgumentNullException(nameof(invoiceRepository));
         }
 
-        public InvoiceResponse SaveInvoice(InvoiceModelView invoice) 
+        public InvoiceResponse SaveInvoice(InvoiceModelView invoice)
         {
             InvoiceResponse response = new InvoiceResponse();
             try
             {
                 var invoiceBd = Mapper.Map<Invoice>(invoice);
-                if (_invoiceRepository.Count("WHRE InvoiceId = @id", new { id = invoiceBd.InvoiceId }) > 0) 
+                if (_invoiceRepository.Count("WHRE InvoiceId = @id", new { id = invoiceBd.InvoiceId }) > 0)
                     invoiceBd = _invoiceRepository.Update(invoiceBd);
                 else
                     invoiceBd.InvoiceId = _invoiceRepository.Insert<int>(invoiceBd);
@@ -44,7 +44,7 @@ namespace Ophelia.Services
             {
                 var invoice = _invoiceRepository.GetFindId(invoiceId);
 
-                if (invoice == null) 
+                if (invoice == null)
                 {
                     response.Error($"Invoice no encontrada por id {invoiceId}");
                     return response;
