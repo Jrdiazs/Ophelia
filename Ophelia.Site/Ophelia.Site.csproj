@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\models\customers.ts" />
+    <None Remove="ClientApp\src\app\models\index.ts" />
     <None Remove="ClientApp\src\app\models\invoice.ts" />
     <None Remove="ClientApp\src\app\models\invoiceDetail.ts" />
     <None Remove="ClientApp\src\app\models\typeDocument.ts" />
@@ -40,6 +41,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\models\customers.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\index.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\invoice.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\invoiceDetail.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\typeDocument.ts" />
