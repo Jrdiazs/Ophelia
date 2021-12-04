@@ -2,5 +2,17 @@
   <app-nav-menu></app-nav-menu>
   <div class="container">
     <router-outlet></router-outlet>
+    <dx-button text="Click me"
+               (onClick)="helloWorld()">
+    </dx-button>
+    <dx-text-box valueChangeEvent="keyup"
+                 [maxLength]="40"></dx-text-box>
+
+    <dx-data-grid id="gridContainer"
+                  [dataSource]="customers"
+                  keyExpr="ID"
+                  [columns]="['CompanyName', 'City', 'State', 'Phone', 'Fax']"
+                  [showBorders]="true">
+    </dx-data-grid>
   </div>
 </body>

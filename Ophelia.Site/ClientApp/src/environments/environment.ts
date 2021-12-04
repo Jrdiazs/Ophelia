@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  Api:"http://localhost:37154/",
-  ApiOphelia:"http://localhost:37154/Api/"
+  Api: "http://localhost:37154/",
+  ApiOphelia: "http://localhost:37154/Api/"
 };
 
 /*

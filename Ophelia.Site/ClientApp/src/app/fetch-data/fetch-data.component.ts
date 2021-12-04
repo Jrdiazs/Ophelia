@@ -1,7 +1,7 @@
 /// <reference path="../../environments/environment.ts" />
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment  } from '../../environments/environment'
+import { environment } from '../../environments/environment'
 
 @Component({
   selector: 'app-fetch-data',
@@ -10,8 +10,7 @@ import { environment  } from '../../environments/environment'
 export class FetchDataComponent {
   public forecasts: WeatherForecast[];
 
-  constructor(http: HttpClient)
-  {
+  constructor(http: HttpClient) {
     http.get<WeatherForecast[]>(environment.Api + 'weatherforecast').subscribe(result => {
       this.forecasts = result;
     }, error => console.error(error));
