@@ -1,4 +1,4 @@
-export class CustomerExample{
+export class CustomerExample {
   ID: number;
 
   CompanyName: string;

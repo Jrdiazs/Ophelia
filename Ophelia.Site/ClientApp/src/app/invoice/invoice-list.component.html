@@ -1,0 +1,32 @@
+
+
+<form action="your-action" (submit)="onFormSubmit($event)">
+  <dx-form id="form"
+           [formData]="invoiceFilter"
+           [readOnly]="false"
+           [showColonAfterLabel]="true"
+           [showValidationSummary]="true"
+           validationGroup="InvoiceData">
+    
+    <dxi-item itemType="group">
+      <dxi-item dataField="invoiceNumber"  [label]="{text: 'Número Factura'}"
+                editorType="dxNumberBox">
+       
+      </dxi-item>
+
+      <dxi-item dataField="customerId" [label]="{text: 'Cliente'}"
+                editorType="dxSelectBox"
+                [editorOptions]="{ dataSource: customers, valueExpr: 'id',
+                                displayExpr: 'fullName' }">
+
+      </dxi-item>
+
+    </dxi-item>
+    
+        <dxi-item itemType="button"
+                  horizontalAlignment="left"
+                  [buttonOptions]="buttonOptions">
+        </dxi-item>
+</dx-form>
+</form>
+

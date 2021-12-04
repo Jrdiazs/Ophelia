@@ -2,8 +2,10 @@
 using Ophelia.Data;
 using Ophelia.Models;
 using Ophelia.Services.ModelView;
+using Ophelia.Services.Request;
 using Ophelia.Services.Responses;
 using System;
+using System.Collections.Generic;
 
 namespace Ophelia.Services
 {
@@ -59,6 +61,22 @@ namespace Ophelia.Services
             }
             return response;
         }
+
+        public InvoiceResponseList GetInvoicesSearch(InvoiceFilter request) 
+        {
+            var response = new InvoiceResponseList();
+            try
+            {
+                var invoices = _invoiceRepository.GetInvoicesSearch(request.InvoiceNumber, request.CustomerId);
+                var invoicesResponse = Mapper.Map<List<InvoiceModelView>>(invoices);
+                response.Ok(invoicesResponse);
+            }
+            catch (Exception ex)
+            {
+                response.Error(ex);
+            }
+            return response;
+        }
     }
 
     public interface IInvoiceServices
@@ -66,5 +84,7 @@ namespace Ophelia.Services
         InvoiceResponse SaveInvoice(InvoiceModelView invoice);
 
         InvoiceResponse GetInvoiceById(int invoiceId);
+
+        InvoiceResponseList GetInvoicesSearch(InvoiceFilter request);
     }
 }

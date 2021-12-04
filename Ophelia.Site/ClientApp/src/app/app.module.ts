@@ -11,7 +11,9 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 
 //dev express
-import { DxButtonModule, DxTextBoxModule, DxDataGridModule } from 'devextreme-angular';
+import {
+  DxButtonModule, DxDataGridModule, DxSelectBoxModule, DxTemplateModule, DxNumberBoxModule, DxTextBoxModule, DxFormModule, DxFormComponent } from 'devextreme-angular';
+import { InvoiceListComponent } from './invoice/invoice-list.component';
 
 @NgModule({
   declarations: [
@@ -19,19 +21,24 @@ import { DxButtonModule, DxTextBoxModule, DxDataGridModule } from 'devextreme-an
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent
+    FetchDataComponent,
+    InvoiceListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     DxButtonModule,
     DxTextBoxModule,
+    DxNumberBoxModule,
+    DxSelectBoxModule,
     DxDataGridModule,
+    DxFormModule,
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'invoice-list', component: InvoiceListComponent },
     ])
   ],
   providers: [],

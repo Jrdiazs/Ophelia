@@ -4,25 +4,25 @@ using System;
 
 namespace Ophelia.Site.Controllers
 {
+    [Route("api/Customers")]
     [ApiController]
-    [Route("Api/TypeDocument")]
-    public class TypeDocumentController : ControllerBase
+    public class CustomersController : ControllerBase
     {
-        private readonly ITypeDocumentServices _services;
+        private readonly ICustomersServices _services;
 
-        public TypeDocumentController(ITypeDocumentServices services)
+        public CustomersController(ICustomersServices services)
         {
             _services = services ?? throw new ArgumentNullException(nameof(services));
         }
 
         [HttpGet]
-        [Route("GetTypeDocuments")]
-        public IActionResult GetTypeDocuments()
+        [Route("GetCustomers")]
+        public IActionResult GetCustomers()
         {
             try
             {
-                var typeDocuments = _services.GetTypeDocuments();
-                return Ok(typeDocuments);
+                var customers = _services.GetCustomers();
+                return Ok(customers);
             }
             catch (Exception)
             {

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -24,12 +24,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\models\base-response.ts" />
     <None Remove="ClientApp\src\app\models\customer-example.ts" />
     <None Remove="ClientApp\src\app\models\customers.ts" />
     <None Remove="ClientApp\src\app\models\index.ts" />
+    <None Remove="ClientApp\src\app\models\invoice-filter-request.ts" />
     <None Remove="ClientApp\src\app\models\invoice.ts" />
     <None Remove="ClientApp\src\app\models\invoiceDetail.ts" />
-    <None Remove="ClientApp\src\app\models\typeDocument.ts" />
+    <None Remove="ClientApp\src\app\models\type-document.ts" />
+    <None Remove="ClientApp\src\app\services\customers-services.ts" />
+    <None Remove="ClientApp\src\app\services\index.ts" />
+    <None Remove="ClientApp\src\app\services\type-document-services.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,16 +42,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\services\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\base-response.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\customer-example.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\customers.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\index.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\invoice-filter-request.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\invoice.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\invoiceDetail.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\models\typeDocument.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\type-document.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\type-document-services.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\services\customers-services.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\index.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
