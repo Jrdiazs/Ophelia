@@ -1,0 +1,54 @@
+
+
+<form action="your-action" (submit)="onFormSubmit($event)">
+  <dx-form id="form"
+           [formData]="invoice"
+           [readOnly]="false"
+           [showColonAfterLabel]="true"
+           [showValidationSummary]="true"
+           validationGroup="InvoiceData">
+
+    <dxi-item itemType="group">
+      <dxi-item dataField="id" [label]="{text: 'Id'}"
+                editorType="dxNumberBox" [editorOptions]="{readOnly: true}">
+      </dxi-item>
+      <dxi-item dataField="invoiceNumber" [label]="{text: 'Invoice Number'}"
+                editorType="dxNumberBox">
+        <dxi-validation-rule type="required" message="Invoice Number is required">
+        </dxi-validation-rule>
+        <dxi-validation-rule type="stringLength"
+                             [min]="2"
+                             message="Invoice Number have at least 2 characters">
+        </dxi-validation-rule>
+
+        <dxi-validation-rule type="stringLength"
+                             [max]="9"
+                             message="Invoice Number have at least 9 characters">
+        </dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item dataField="customer" [label]="{text: 'Customer'}"
+                editorType="dxSelectBox"
+                [editorOptions]="{ dataSource: customers, valueExpr: 'id',
+                                displayExpr: 'fullName' }">
+        <dxi-validation-rule type="required" message="Customer is required">
+        </dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item dataField="creationDate" [label]="{text: 'Created Date'}"
+                editorType="dxDateBox"  [editorOptions]="{readOnly: true}">
+      </dxi-item>
+
+      <dxi-item dataField="totalBill" [label]="{text: 'Total'}"
+                editorType="dxNumberBox" [editorOptions]="{format: {type:'currency'},readOnly: true}">
+      </dxi-item>
+     
+      
+      <dxi-item itemType="button"
+                horizontalAlignment="left"
+                [buttonOptions]="buttonOptions"></dxi-item>
+      </dxi-item>
+</dx-form>
+
+  
+</form>

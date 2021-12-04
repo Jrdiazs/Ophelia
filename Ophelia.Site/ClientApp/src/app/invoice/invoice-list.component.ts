@@ -12,7 +12,7 @@ export class InvoiceListComponent implements OnInit {
   customers: Customers[] = [];
 
   buttonOptions: any = {
-    text: 'Buscar',
+    text: 'Search',
     type: 'success',
     useSubmitBehavior: true,
   };

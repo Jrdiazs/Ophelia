@@ -2,7 +2,7 @@ import { BaseResponse } from "./base-response";
 
 export class Invoice {
   id: number;
-  invoiceNumber: number;
+  invoiceNumber?: number;
   customer: number;
   totalBill: number;
   creationDate: Date;

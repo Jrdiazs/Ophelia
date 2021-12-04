@@ -32,6 +32,22 @@ namespace Ophelia.Site.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetInvoiceById")]
+        public IActionResult GetInvoiceById(int invoiceId)
+        {
+            try
+            {
+                var invoices = _services.GetInvoiceById(invoiceId);
+                return Ok(invoices);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
         [HttpPost]
         [Route("SaveInvoice")]
         public IActionResult SaveInvoice([FromBody] InvoiceModelView invoice)

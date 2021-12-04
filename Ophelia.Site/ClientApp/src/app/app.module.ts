@@ -14,7 +14,7 @@ import { InvoiceCreateComponent } from './invoice/invoice-create.component';
 
 //dev express
 import {
-  DxButtonModule, DxDataGridModule, DxSelectBoxModule, DxTemplateModule, DxNumberBoxModule, DxTextBoxModule, DxFormModule, DxFormComponent
+  DxButtonModule, DxDataGridModule, DxSelectBoxModule , DxDateBoxModule, DxTemplateModule, DxNumberBoxModule, DxTextBoxModule, DxFormModule, DxFormComponent
 } from 'devextreme-angular';
 
 @NgModule({
@@ -35,7 +35,9 @@ import {
     DxNumberBoxModule,
     DxSelectBoxModule,
     DxDataGridModule,
+    DxTemplateModule,
     DxFormModule,
+    DxDateBoxModule,
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
