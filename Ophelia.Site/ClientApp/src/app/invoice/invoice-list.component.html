@@ -7,14 +7,14 @@
            [showColonAfterLabel]="true"
            [showValidationSummary]="true"
            validationGroup="InvoiceData">
-    
+
     <dxi-item itemType="group">
-      <dxi-item dataField="invoiceNumber"  [label]="{text: 'Número Factura'}"
+      <dxi-item dataField="invoiceNumber" [label]="{text: 'Invoice Number'}"
                 editorType="dxNumberBox">
-       
+
       </dxi-item>
 
-      <dxi-item dataField="customerId" [label]="{text: 'Cliente'}"
+      <dxi-item dataField="customerId" [label]="{text: 'Customer'}"
                 editorType="dxSelectBox"
                 [editorOptions]="{ dataSource: customers, valueExpr: 'id',
                                 displayExpr: 'fullName' }">
@@ -22,11 +22,50 @@
       </dxi-item>
 
     </dxi-item>
-    
-        <dxi-item itemType="button"
-                  horizontalAlignment="left"
-                  [buttonOptions]="buttonOptions">
-        </dxi-item>
-</dx-form>
+
+    <dxi-item itemType="button"
+              horizontalAlignment="left"
+              [buttonOptions]="buttonOptions">
+    </dxi-item>
+  </dx-form>
+
+  <br />
+  <dx-data-grid id="gridContainer"
+                [dataSource]="invoices"
+                keyExpr="id"
+                [showBorders]="true">
+    <dxi-column dataField="id"
+                [width]="100"
+                [allowFiltering]="false" caption="Id"
+                [allowSorting]="false"
+                cellTemplate="linkEdit"></dxi-column>
+    <dxi-column dataField="invoiceNumber" dataType="number" caption="Invoice Number"> </dxi-column>
+    <dxi-column dataField="customerName" dataType="string" caption="Customer"> </dxi-column>
+    <dxi-column dataField="creationDate" dataType="date" format="shortDate" caption="Creation Date" cellTemplate="dateCell"> </dxi-column>
+    <dxi-column dataField="totalBill" dataType="number" format="currency" caption="Total"></dxi-column>
+    <dxi-column caption="Detail" cellTemplate="detailCellTemplate"></dxi-column>
+
+    <div *dxTemplate="let cellData of 'dateCell'">
+      {{cellData.value | date: 'dd/MM/yyyy HH:mm:ss'}}
+    </div>
+    <div *dxTemplate="let cellData of 'linkEdit'">
+      <a [routerLink]="['/invoice-create']" [queryParams]="{id: cellData.value}">{{cellData.value}}</a>
+    </div>
+    <div *dxTemplate="let d of 'detailCellTemplate'">
+      <a [routerLink]="['/invoice-create']" [queryParams]="{id: d.data.id}">Detail</a>
+    </div>
+    <dxo-toolbar>
+      <dxi-item location="after">
+        <dx-button icon="add" (onClick)="addInvoice($event)">
+        </dx-button>
+      </dxi-item>
+
+    </dxo-toolbar>
+    <dxo-paging [pageSize]="12"></dxo-paging>
+    <dxo-pager [showPageSizeSelector]="true"
+               [allowedPageSizes]="[8, 12, 20]"></dxo-pager>
+  </dx-data-grid>
+ 
+
 </form>
 

@@ -34,6 +34,7 @@
     <None Remove="ClientApp\src\app\models\type-document.ts" />
     <None Remove="ClientApp\src\app\services\customers-services.ts" />
     <None Remove="ClientApp\src\app\services\index.ts" />
+    <None Remove="ClientApp\src\app\services\invoice-services.ts" />
     <None Remove="ClientApp\src\app\services\type-document-services.ts" />
   </ItemGroup>
 
@@ -50,6 +51,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\models\invoice.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\invoiceDetail.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\type-document.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\invoice-services.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\type-document-services.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

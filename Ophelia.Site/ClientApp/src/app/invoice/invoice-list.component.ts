@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DxFormComponent } from 'devextreme-angular';
-import { Customers, InvoiceFilter, TypeDocument } from '../models';
-import { CustomersServices, TypeDocumentServices } from '../services';
+import { Customers, Invoice, InvoiceFilter, TypeDocument } from '../models';
+import { CustomersServices, InvoicesServices, TypeDocumentServices } from '../services';
 
 @Component({
   selector: 'app-invoice-list',
@@ -19,8 +20,9 @@ export class InvoiceListComponent implements OnInit {
 
   invoiceFilter: InvoiceFilter = new InvoiceFilter();
 
+  invoices: Invoice[];
 
-  constructor(private customerServices: CustomersServices) {
+  constructor(private customerServices: CustomersServices, private invoiceServices: InvoicesServices, private route: Router) {
     
   }
 
@@ -34,5 +36,16 @@ export class InvoiceListComponent implements OnInit {
 
     
   }
-  onFormSubmit(e) { }
+  onFormSubmit(e)
+  {
+    this.invoiceServices.GetInvoicesSearch(this.invoiceFilter).subscribe(result => {
+      if (result.success)
+        this.invoices = result.data;
+    },
+      error => console.error(error));
+  }
+  addInvoice(e)
+  {
+    this.route.navigate(['/invoice-create'], { queryParams: { id: 0 } });
+  }
 }

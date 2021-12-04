@@ -1,6 +1,9 @@
-﻿using Ophelia.Models;
+﻿using Dapper;
+using Ophelia.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 
 namespace Ophelia.Data
 {
@@ -13,8 +16,11 @@ namespace Ophelia.Data
         {
             try
             {
-                var invoices = GetList("WHERE (InvoiceNumber = @invoice OR @invoice IS NULL)" +
-                    " AND (CustomerId = @cutomer OR @customer IS NULL)", new { invoice = invoiceNumber, customer = customerId });
+                var invoices = Connection.Query<Invoice>(sql: "OpheliaDB_SP_Invoice_Search", new
+                {
+                    InvoiceId = invoiceNumber,
+                    CustomerId = customerId
+                }, commandType: CommandType.StoredProcedure).ToList();
 
                 return invoices?? new List<Invoice>();
             }

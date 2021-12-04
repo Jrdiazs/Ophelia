@@ -6,12 +6,13 @@ export class Invoice {
   customer: number;
   totalBill: number;
   creationDate: Date;
+  customerName: string;
 }
 
-export class InvoiceRsponseList extends BaseResponse {
+export class InvoiceResponseList extends BaseResponse {
   data: Invoice[];
 }
 
-export class InvoiceRsponse extends BaseResponse {
+export class InvoiceResponse extends BaseResponse {
   data: Invoice;
 }

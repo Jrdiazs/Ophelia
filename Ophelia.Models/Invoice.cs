@@ -22,5 +22,8 @@ namespace Ophelia.Models
 
         [Column("TotalBill")]
         public decimal TotalBill { get; set; }
+
+        [NotMapped]
+        public string CustomerName { get; set; }
     }
 }
