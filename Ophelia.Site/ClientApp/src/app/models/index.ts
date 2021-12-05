@@ -1,6 +1,6 @@
-export { ProductsResponseList, Products,ProductsResponse } from './products'
+export { ProductsResponseList, Products, ProductsResponse } from './products'
 export { Customers, CustomersResponseList, CustomersResponse } from './customers'
 export { Invoice, InvoiceResponse, InvoiceResponseList } from './invoice'
-export { InvoiceDetail, InvoiceDetailResponse,InvoiceDetailResponseList } from './invoice-detail'
+export { InvoiceDetail, InvoiceDetailResponse, InvoiceDetailResponseList } from './invoice-detail'
 export { TypeDocument, TypeDocumentResponseList, TypeDocumentResponse } from './type-document'
 export { InvoiceFilter } from './invoice-filter-request'

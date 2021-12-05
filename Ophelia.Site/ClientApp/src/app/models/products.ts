@@ -5,6 +5,7 @@ export class Products {
   productName: string;
   inventoryQuantity: number;
   priceByUnit: number;
+  productDescription: string;
 }
 
 export class ProductsResponseList extends BaseResponse {

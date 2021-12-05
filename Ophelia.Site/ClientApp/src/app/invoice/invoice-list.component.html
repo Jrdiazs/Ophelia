@@ -47,7 +47,7 @@
       <a [routerLink]="['/invoice-create']" [queryParams]="{id: cellData.value}">{{cellData.value}}</a>
     </div>
     <div *dxTemplate="let d of 'detailCellTemplate'">
-      <a [routerLink]="['/invoice-create']" [queryParams]="{id: d.data.id}">Detail</a>
+      <a [routerLink]="['/invoice-detail']" [queryParams]="{id: d.data.id}">Detail</a>
     </div>
     <dxo-toolbar>
       <dxi-item location="after">

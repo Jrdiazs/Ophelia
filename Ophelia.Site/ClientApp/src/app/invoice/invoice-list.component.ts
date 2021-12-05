@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DxFormComponent } from 'devextreme-angular';
-import { Customers, Invoice, InvoiceFilter, TypeDocument } from '../models';
-import { CustomersServices, InvoicesServices, TypeDocumentServices } from '../services';
+import { Router } from '@angular/router';
+import { Customers, Invoice, InvoiceFilter } from '../models';
+import { CustomersServices, InvoicesServices } from '../services';
 
 @Component({
   selector: 'app-invoice-list',

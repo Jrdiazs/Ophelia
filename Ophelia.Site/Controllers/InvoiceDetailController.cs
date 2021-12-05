@@ -22,7 +22,28 @@ namespace Ophelia.Site.Controllers
         {
             try
             {
-                var response = _services.SaveInvoiceDetail(request);
+                if (ModelState.IsValid)
+                {
+                    var response = _services.SaveInvoiceDetail(request);
+
+                    return Ok(response);
+                }
+
+                return BadRequest();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [Route("DeleteInvoiceDetail")]
+        public IActionResult DeleteInvoiceDetail([FromQuery] int invoiceDetailId)
+        {
+            try
+            {
+                var response = _services.DeleteInvoiceDetail(invoiceDetailId);
 
                 return Ok(response);
             }

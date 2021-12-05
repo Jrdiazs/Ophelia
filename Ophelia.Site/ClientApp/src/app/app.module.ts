@@ -11,10 +11,11 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { InvoiceListComponent } from './invoice/invoice-list.component';
 import { InvoiceCreateComponent } from './invoice/invoice-create.component';
+import { InvoiceDetailComponent } from './invoice/invoice-detail.component';
 
 //dev express
 import {
-  DxButtonModule, DxDataGridModule, DxSelectBoxModule , DxDateBoxModule, DxTemplateModule, DxNumberBoxModule, DxTextBoxModule, DxFormModule, DxFormComponent
+  DxButtonModule, DxDataGridModule, DxToastModule, DxSelectBoxModule, DxDateBoxModule, DxTemplateModule, DxNumberBoxModule, DxTextBoxModule, DxFormModule, DxFormComponent
 } from 'devextreme-angular';
 
 @NgModule({
@@ -25,7 +26,8 @@ import {
     CounterComponent,
     FetchDataComponent,
     InvoiceListComponent,
-    InvoiceCreateComponent
+    InvoiceCreateComponent,
+    InvoiceDetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,6 +39,7 @@ import {
     DxDataGridModule,
     DxTemplateModule,
     DxFormModule,
+    DxToastModule,
     DxDateBoxModule,
     FormsModule,
     RouterModule.forRoot([
@@ -44,7 +47,8 @@ import {
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'invoice-list', component: InvoiceListComponent },
-      { path: 'invoice-create', component: InvoiceCreateComponent }
+      { path: 'invoice-create', component: InvoiceCreateComponent },
+      { path: 'invoice-detail', component: InvoiceDetailComponent }
     ])
   ],
   providers: [],

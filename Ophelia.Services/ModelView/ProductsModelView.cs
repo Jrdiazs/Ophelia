@@ -16,5 +16,8 @@ namespace Ophelia.Services.ModelView
 
         [Required]
         public decimal PriceByUnit { get; set; }
+
+        public string ProductDescription
+        { get { return $"Name: {ProductName} - Price: {string.Format("{0:C}", PriceByUnit)}"; } }
     }
 }

@@ -1,0 +1,33 @@
+<dx-data-grid id="gridContainer"
+              [dataSource]="invoiceDetail"
+              keyExpr="id"
+              [showBorders]="true"
+              (onInitNewRow)="addRow($event)"
+              (onSaving)="onSaving($event)">
+  <dxo-paging [enabled]="true"></dxo-paging>
+  <dxo-editing mode="row"
+               [allowUpdating]="true"
+               [allowDeleting]="true"
+               [allowAdding]="true">
+  </dxo-editing>
+
+  <dxi-column dataField="product" [setCellValue]="setProductInvoice" caption="Product" [width]="450">
+    <dxo-lookup [dataSource]="products" displayExpr="productDescription" valueExpr="id">
+    </dxo-lookup>
+  </dxi-column>
+
+  <dxi-column dataField="productQuantity" [setCellValue]="setTotalInvoice" dataType="number" caption="Quantity"></dxi-column>
+  <dxi-column dataField="productValue" [allowEditing]="false" format="currency" dataType="number" [formItem]="{editorOptions: { readOnly: true }}" caption="Product Value"></dxi-column>
+  <dxi-column dataField="totalValue" [allowEditing]="false" format="currency" dataType="number" [formItem]="{editorOptions: { readOnly: true }}" caption="Total"></dxi-column>
+
+  <dxo-summary>
+
+    <dxi-total-item column="totalValue"
+                    summaryType="sum"
+                    valueFormat="currency">
+    </dxi-total-item>
+  </dxo-summary>
+</dx-data-grid>
+
+<dx-toast [(visible)]="isVisible" [type]="type" [message]="message">
+</dx-toast>

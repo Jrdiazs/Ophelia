@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DxFormComponent } from 'devextreme-angular';
-import { Customers, Invoice, InvoiceFilter, TypeDocument } from '../models';
-import { CustomersServices, InvoicesServices, TypeDocumentServices } from '../services';
+import { ActivatedRoute } from '@angular/router';
+import { Customers, Invoice } from '../models';
+import { CustomersServices, InvoicesServices } from '../services';
 
 @Component({
   selector: 'app-invoice-create',
@@ -25,39 +24,43 @@ export class InvoiceCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.invoice.invoiceNumber = null;
     this.route.queryParams.subscribe(params => {
       this.invoiceId = params["id"];
       this.invoice.id = this.invoiceId;
-      if (this.invoiceId == 0)
+
+      if (this.invoiceId == 0) {
+        this.invoice.invoiceNumber = null;
         this.invoice.creationDate = new Date();
+      }
+
       else {
         this.getInvoicedFindById(this.invoiceId);
       }
     });
 
     this.customerServices.GetCustomersList().subscribe(result => {
-      if (result.success)
-        this.customers = result.data;
+      if (result.success) { }
+      this.customers = result.data;
     },
       error => console.error(error));
   }
   onFormSubmit(e) {
     this.invoiceServices.SaveInvoice(this.invoice).subscribe(result => {
-      if (result.success)
+      if (result.success) {
         this.invoice = result.data;
+        this.showDetail = true;
+        this.params = { id: this.invoice.id };
+      }
     },
       error => console.error(error));
   }
   getInvoicedFindById(invoiceId: number) {
     this.invoiceServices.GetInvoiceById(invoiceId).subscribe(result => {
-      if (result.success)
-      {
+      if (result.success) {
         this.invoice = result.data;
         this.showDetail = true;
-        this.params = { id: this.invoice.id};
+        this.params = { id: this.invoice.id };
       }
-        
     },
       error => console.error(error));
   }

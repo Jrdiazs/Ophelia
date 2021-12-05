@@ -34,7 +34,7 @@ namespace Ophelia.Services
                 var quantity = product.InventoryQuantity;
                 var quantityNow = quantity - invoiceModel.ProductQuantity;
 
-                if (quantityNow <= allowedAmount)
+                if (quantityNow < allowedAmount)
                 {
                     response.Error("No se puede realizar la compra, ya que queda el numero de productos minimos de inventario");
                     return response;
@@ -78,6 +78,22 @@ namespace Ophelia.Services
             }
             return response;
         }
+
+        public ResponseData<int> DeleteInvoiceDetail(int invoiceDetailId)
+        {
+            var response = new ResponseData<int>();
+
+            try
+            {
+                var rowsAffected = _unitOfWork.InvoiceDetailRepository.DeleteInvoiceDetail(invoiceDetailId);
+                response.Ok(rowsAffected,"Detalle Eliminado correctamente");
+            }
+            catch (Exception ex)
+            {
+                response.Error(ex);
+            }
+            return response;
+        }
     }
 
     public interface IInvoiceDetailServices
@@ -85,5 +101,7 @@ namespace Ophelia.Services
         InvoiceDetailResponse SaveInvoiceDetail(InvoiceDetailModelView invoice);
 
         InvoiceDetailResponseList GetInvoiceDetailFromByInvoiceId(int invoiceId);
+
+        ResponseData<int> DeleteInvoiceDetail(int invoiceDetailId);
     }
 }
