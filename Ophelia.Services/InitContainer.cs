@@ -36,6 +36,7 @@ namespace Ophelia.Services
             services.AddScoped<IProductsRepository, ProductsRepository>();
             services.AddScoped<ITypeDocumentRepository, TypeDocumentRepository>();
             services.AddScoped<IParametersRepository, ParametersRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             //Servicios
             services.AddScoped<ICustomersServices, CustomersServices>();
             services.AddScoped<IInvoiceDetailServices, InvoiceDetailServices>();

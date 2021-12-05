@@ -47,7 +47,6 @@ namespace Ophelia.Site.Controllers
             }
         }
 
-
         [HttpPost]
         [Route("SaveInvoice")]
         public IActionResult SaveInvoice([FromBody] InvoiceModelView invoice)

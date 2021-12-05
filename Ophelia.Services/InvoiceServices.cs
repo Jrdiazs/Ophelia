@@ -26,13 +26,12 @@ namespace Ophelia.Services
                 var invoiceBd = Mapper.Map<Invoice>(invoice);
                 if (_invoiceRepository.Count("WHERE InvoiceId = @id", new { id = invoiceBd.InvoiceId }) > 0)
                     invoiceBd = _invoiceRepository.Update(invoiceBd);
-                else 
+                else
                 {
                     invoiceBd.CreationDate = DateTime.Now;
                     invoiceBd.TotalBill = 0;
                     invoiceBd.InvoiceId = _invoiceRepository.Insert<int>(invoiceBd);
                 }
-                    
 
                 invoice.Id = invoiceBd.InvoiceId;
                 response.Ok(invoice, "Factura guardada correctamente");

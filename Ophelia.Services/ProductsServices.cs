@@ -34,5 +34,7 @@ namespace Ophelia.Services
     }
 
     public interface IProductsServices
-    { }
+    {
+        ProductsResponseList GetProducts();
+    }
 }

@@ -31,10 +31,13 @@
     <None Remove="ClientApp\src\app\models\invoice-detail.ts" />
     <None Remove="ClientApp\src\app\models\invoice-filter-request.ts" />
     <None Remove="ClientApp\src\app\models\invoice.ts" />
+    <None Remove="ClientApp\src\app\models\products.ts" />
     <None Remove="ClientApp\src\app\models\type-document.ts" />
     <None Remove="ClientApp\src\app\services\customers-services.ts" />
     <None Remove="ClientApp\src\app\services\index.ts" />
+    <None Remove="ClientApp\src\app\services\invoice-detail-services.ts" />
     <None Remove="ClientApp\src\app\services\invoice-services.ts" />
+    <None Remove="ClientApp\src\app\services\products-services.ts" />
     <None Remove="ClientApp\src\app\services\type-document-services.ts" />
   </ItemGroup>
 
@@ -45,12 +48,21 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\models\base-response.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\customer-example.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\products.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\models\customers.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\index.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\invoice-filter-request.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\invoice.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\invoice-detail.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\type-document.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\invoice-detail-services.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\services\products-services.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\services\invoice-services.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\type-document-services.ts">
       <SubType>Code</SubType>

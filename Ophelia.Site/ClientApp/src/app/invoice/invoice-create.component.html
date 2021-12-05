@@ -1,5 +1,3 @@
-
-
 <form action="your-action" (submit)="onFormSubmit($event)">
   <dx-form id="form"
            [formData]="invoice"
@@ -36,19 +34,20 @@
       </dxi-item>
 
       <dxi-item dataField="creationDate" [label]="{text: 'Created Date'}"
-                editorType="dxDateBox"  [editorOptions]="{readOnly: true}">
+                editorType="dxDateBox" [editorOptions]="{readOnly: true}">
       </dxi-item>
 
       <dxi-item dataField="totalBill" [label]="{text: 'Total'}"
                 editorType="dxNumberBox" [editorOptions]="{format: {type:'currency'},readOnly: true}">
       </dxi-item>
-     
-      
+
       <dxi-item itemType="button"
                 horizontalAlignment="left"
                 [buttonOptions]="buttonOptions"></dxi-item>
-      </dxi-item>
-</dx-form>
-
-  
+    </dxi-item>
+  </dx-form>
 </form>
+
+<br />
+
+<a [routerLink]="['/invoice-detail']" [queryParams]="params" *ngIf="showDetail">Detail</a>

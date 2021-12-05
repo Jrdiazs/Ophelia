@@ -1,3 +1,5 @@
 export { CustomersServices } from './customers-services'
 export { InvoicesServices } from './invoice-services'
 export { TypeDocumentServices } from './type-document-services'
+export { InvoicesDetailServices } from './invoice-detail-services'
+export { ProductsServices } from './products-services'

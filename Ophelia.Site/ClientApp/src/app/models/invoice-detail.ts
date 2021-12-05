@@ -1,3 +1,5 @@
+import { BaseResponse } from "./base-response";
+
 export class InvoiceDetail {
   id: number;
   invoice: number;
@@ -6,4 +8,12 @@ export class InvoiceDetail {
   productValue: number;
   totalValue: number;
   creationDate: Date;
+}
+
+export class InvoiceDetailResponseList extends BaseResponse {
+  data: InvoiceDetail[];
+}
+
+export class InvoiceDetailResponse extends BaseResponse {
+  data: InvoiceDetail;
 }
