@@ -51,3 +51,5 @@
 <br />
 
 <a [routerLink]="['/invoice-detail']" [queryParams]="params" *ngIf="showDetail">Detail</a>
+
+<dx-toast [(visible)]="isVisible" [type]="type" [message]="message">

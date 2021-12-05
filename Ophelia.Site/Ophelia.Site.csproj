@@ -33,12 +33,14 @@
     <None Remove="ClientApp\src\app\models\invoice.ts" />
     <None Remove="ClientApp\src\app\models\products.ts" />
     <None Remove="ClientApp\src\app\models\type-document.ts" />
+    <None Remove="ClientApp\src\app\services\base-services.ts" />
     <None Remove="ClientApp\src\app\services\customers-services.ts" />
     <None Remove="ClientApp\src\app\services\index.ts" />
     <None Remove="ClientApp\src\app\services\invoice-detail-services.ts" />
     <None Remove="ClientApp\src\app\services\invoice-services.ts" />
     <None Remove="ClientApp\src\app\services\products-services.ts" />
     <None Remove="ClientApp\src\app\services\type-document-services.ts" />
+    <None Remove="ClientApp\src\app\util\base-component.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,6 +59,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\models\invoice.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\invoice-detail.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\type-document.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\base-services.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\invoice-detail-services.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -69,6 +72,7 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\services\customers-services.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\index.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\util\base-component.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

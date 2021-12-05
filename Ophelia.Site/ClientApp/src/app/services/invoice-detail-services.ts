@@ -1,27 +1,28 @@
 import { Component, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment'
 import { InvoiceDetailResponseList, InvoiceDetail, InvoiceDetailResponse } from '../models/'
 import { Observable } from 'rxjs';
 import { BaseResponse } from '../models/base-response';
+import { BaseServices } from './base-services';
 
 @Injectable({
   providedIn: 'root',
 })
 
-export class InvoicesDetailServices {
-  constructor(private http: HttpClient) {
+export class InvoicesDetailServices extends BaseServices {
+  constructor(http: HttpClient) {
+    super(http);
   }
 
-  SaveInvoiceDetail(request: InvoiceDetail): Observable<InvoiceDetailResponse> {
-    return this.http.post<InvoiceDetailResponse>(environment.ApiOphelia + 'InvoiceDetail/SaveInvoiceDetail', request);
+  saveInvoiceDetail(invoice: InvoiceDetail): Observable<InvoiceDetailResponse> {
+    return this.http.post<InvoiceDetailResponse>(`${this.apiOphelia}/InvoiceDetail/SaveInvoiceDetail`, invoice);
   }
 
-  GetInvoiceById(invoiceId: number): Observable<InvoiceDetailResponseList> {
-    return this.http.get<InvoiceDetailResponseList>(environment.ApiOphelia + 'InvoiceDetail/GetInvoiceDetailFromByInvoiceId?invoiceId=' + invoiceId);
+  getInvoiceDetailFromById(invoiceId: number): Observable<InvoiceDetailResponseList> {
+    return this.http.get<InvoiceDetailResponseList>(`${this.apiOphelia}/InvoiceDetail/GetInvoiceDetailFromByInvoiceId?invoiceId=${invoiceId}`);
   }
 
-  DeleteInvoiceDetail(invoiceDetailId: number): Observable<BaseResponse> {
-    return this.http.post<BaseResponse>(environment.ApiOphelia + 'InvoiceDetail/DeleteInvoiceDetail?invoiceDetailId=' + invoiceDetailId, invoiceDetailId);
+  deleteInvoiceDetail(invoiceDetailId: number): Observable<BaseResponse> {
+    return this.http.post<BaseResponse>(`${this.apiOphelia}/InvoiceDetail/DeleteInvoiceDetail?invoiceDetailId=${invoiceDetailId}`, invoiceDetailId);
   }
 }

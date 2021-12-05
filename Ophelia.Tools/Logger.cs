@@ -7,9 +7,9 @@ namespace Ophelia.Tools
     {
         private static readonly ILog _log = LogManager.GetLogger(typeof(Logger));
 
-        public static void ErrorFatal(string message, Exception ex)
+        public static void ErrorFatal(Exception ex)
         {
-            _log.Error(message, ex);
+            _log.Error(ex);
         }
 
         public static void Info(string message, Exception ex = null)

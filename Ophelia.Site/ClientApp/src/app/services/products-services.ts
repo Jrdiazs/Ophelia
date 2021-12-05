@@ -1,18 +1,19 @@
 import { Component, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment'
 import { ProductsResponseList } from '../models'
 import { Observable } from 'rxjs';
+import { BaseServices } from './base-services';
 
 @Injectable({
   providedIn: 'root',
 })
 
-export class ProductsServices {
-  constructor(private http: HttpClient) {
+export class ProductsServices extends BaseServices {
+  constructor(http: HttpClient) {
+    super(http);
   }
 
-  GetProducts(): Observable<ProductsResponseList> {
-    return this.http.get<ProductsResponseList>(environment.ApiOphelia + 'Products/GetProducts');
+  getProducts(): Observable<ProductsResponseList> {
+    return this.http.get<ProductsResponseList>(`${this.apiOphelia}/Products/GetProducts`);
   }
 }

@@ -1,25 +1,26 @@
 import { Component, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment'
 import { Invoice, InvoiceFilter, InvoiceResponse, InvoiceResponseList } from '../models/'
 import { Observable } from 'rxjs';
+import { BaseServices } from './base-services';
 
 @Injectable({
   providedIn: 'root',
 })
 
-export class InvoicesServices {
-  constructor(private http: HttpClient) {
+export class InvoicesServices extends BaseServices{
+  constructor(http: HttpClient) {
+    super(http);
   }
 
-  GetInvoicesSearch(request: InvoiceFilter): Observable<InvoiceResponseList> {
-    return this.http.post<InvoiceResponseList>(environment.ApiOphelia + 'Invoice/GetInvoicesSearch', request);
+  getInvoicesSearch(filter: InvoiceFilter): Observable<InvoiceResponseList> {
+    return this.http.post<InvoiceResponseList>(`${this.apiOphelia}/Invoice/GetInvoicesSearch`, filter);
   }
-  SaveInvoice(request: Invoice): Observable<InvoiceResponse> {
-    return this.http.post<InvoiceResponse>(environment.ApiOphelia + 'Invoice/SaveInvoice', request);
+  saveInvoice(invoice: Invoice): Observable<InvoiceResponse> {
+    return this.http.post<InvoiceResponse>(`${this.apiOphelia}/Invoice/SaveInvoice`, invoice);
   }
 
-  GetInvoiceById(invoiceId: number): Observable<InvoiceResponse> {
-    return this.http.get<InvoiceResponse>(environment.ApiOphelia + 'Invoice/GetInvoiceById?invoiceId=' + invoiceId);
+  getInvoiceById(invoiceId: number): Observable<InvoiceResponse> {
+    return this.http.get<InvoiceResponse>(`${this.apiOphelia}/Invoice/GetInvoiceById?invoiceId=${invoiceId}`);
   }
 }

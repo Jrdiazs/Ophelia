@@ -2,6 +2,7 @@
 using Ophelia.Data;
 using Ophelia.Services.ModelView;
 using Ophelia.Services.Responses;
+using Ophelia.Tools;
 using System;
 using System.Collections.Generic;
 
@@ -27,6 +28,7 @@ namespace Ophelia.Services
             }
             catch (Exception ex)
             {
+                Logger.ErrorFatal(ex);
                 response.Error(ex);
             }
             return response;

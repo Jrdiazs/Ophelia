@@ -4,6 +4,7 @@ using Ophelia.Models;
 using Ophelia.Services.ModelView;
 using Ophelia.Services.Request;
 using Ophelia.Services.Responses;
+using Ophelia.Tools;
 using System;
 using System.Collections.Generic;
 
@@ -24,20 +25,36 @@ namespace Ophelia.Services
             try
             {
                 var invoiceBd = Mapper.Map<Invoice>(invoice);
-                if (_invoiceRepository.Count("WHERE InvoiceId = @id", new { id = invoiceBd.InvoiceId }) > 0)
+                if (_invoiceRepository.Count("WHERE InvoiceId = @id", new { id = invoiceBd.InvoiceId }) > 0) 
+                {
+                    if (_invoiceRepository.Count("WHERE InvoiceNumber = @invoice AND InvoiceId <> @id", new { id= invoiceBd.InvoiceId, invoice = invoiceBd.InvoiceNumber }) > 0)
+                    {
+                        response.Error($"An invoice with this code '{invoiceBd.InvoiceNumber}' already exists");
+                        return response;
+                    }
+
                     invoiceBd = _invoiceRepository.Update(invoiceBd);
+                }
+                    
                 else
                 {
+                    if (_invoiceRepository.Count("WHERE InvoiceNumber = @invoice", new { invoice = invoiceBd.InvoiceNumber }) > 0)
+                    {
+                        response.Error($"An invoice with this code '{invoiceBd.InvoiceNumber}' already exists");
+                        return response;
+                    }
+
                     invoiceBd.CreationDate = DateTime.Now;
                     invoiceBd.TotalBill = 0;
                     invoiceBd.InvoiceId = _invoiceRepository.Insert<int>(invoiceBd);
                 }
 
                 invoice.Id = invoiceBd.InvoiceId;
-                response.Ok(invoice, "Factura guardada correctamente");
+                response.Ok(invoice, "Invoice saved successfully");
             }
             catch (Exception ex)
             {
+                Logger.ErrorFatal(ex);
                 response.Error(ex);
             }
             return response;
@@ -52,7 +69,7 @@ namespace Ophelia.Services
 
                 if (invoice == null)
                 {
-                    response.Error($"Invoice no encontrada por id {invoiceId}");
+                    response.Error($"Invoice not found by id {invoiceId}");
                     return response;
                 }
 
@@ -61,6 +78,7 @@ namespace Ophelia.Services
             }
             catch (Exception ex)
             {
+                Logger.ErrorFatal(ex);
                 response.Error(ex);
             }
             return response;
@@ -77,6 +95,7 @@ namespace Ophelia.Services
             }
             catch (Exception ex)
             {
+                Logger.ErrorFatal(ex);
                 response.Error(ex);
             }
             return response;

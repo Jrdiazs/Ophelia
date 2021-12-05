@@ -28,37 +28,13 @@ namespace Ophelia.Services
 
         #region [Properties]
 
-        public IProductsRepository ProductsRepository
-        {
-            get
-            {
-                return _productsRepository;
-            }
-        }
+        public IProductsRepository ProductsRepository => _productsRepository;
 
-        public IInvoiceDetailRepository InvoiceDetailRepository
-        {
-            get
-            {
-                return _invoiceDetailRepository;
-            }
-        }
+        public IInvoiceDetailRepository InvoiceDetailRepository => _invoiceDetailRepository;
 
-        public IInvoiceRepository InvoiceRepository
-        {
-            get
-            {
-                return _invoiceRepository;
-            }
-        }
+        public IInvoiceRepository InvoiceRepository => _invoiceRepository;
 
-        public IParametersRepository ParametersRepository
-        {
-            get
-            {
-                return _parametersRepository;
-            }
-        }
+        public IParametersRepository ParametersRepository => _parametersRepository;
 
         #endregion [Properties]
 

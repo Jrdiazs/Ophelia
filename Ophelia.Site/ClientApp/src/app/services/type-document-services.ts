@@ -1,18 +1,19 @@
 import { Component, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment'
-import {  TypeDocumentResponseList } from '../models'
+import { TypeDocumentResponseList } from '../models'
 import { Observable } from 'rxjs';
+import { BaseServices } from './base-services';
 
 @Injectable({
   providedIn: 'root',
 })
 
-export class TypeDocumentServices {
-  constructor(private http: HttpClient) {
+export class TypeDocumentServices extends BaseServices {
+  constructor(http: HttpClient) {
+    super(http);
   }
 
-  GetTypeDocuments(): Observable<TypeDocumentResponseList> {
-    return this.http.get<TypeDocumentResponseList>(environment.ApiOphelia + 'TypeDocument/GetTypeDocuments');
+  getTypeDocuments(): Observable<TypeDocumentResponseList> {
+    return this.http.get<TypeDocumentResponseList>(`${this.apiOphelia}/TypeDocument/GetTypeDocuments`);
   }
 }

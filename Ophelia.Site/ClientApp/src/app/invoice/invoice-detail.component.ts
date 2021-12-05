@@ -2,19 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { InvoiceDetail, Products } from '../models';
 import { InvoicesDetailServices, ProductsServices } from '../services';
+import { BaseComponent } from '../util/base-component';
 
 @Component({
   selector: 'app-invoice-detail',
   templateUrl: './invoice-detail.component.html'
 })
-export class InvoiceDetailComponent implements OnInit {
+export class InvoiceDetailComponent extends BaseComponent implements OnInit {
   products: Products[] = [];
   invoiceDetail: InvoiceDetail[] = [];
-  invoiceId: number;
-  isVisible: boolean = false;
-  message: string = "";
-  type: string = "";
+ 
+
   constructor(private invoiceDetailServices: InvoicesDetailServices, private productServices: ProductsServices, private route: ActivatedRoute) {
+    super();
     this.setProductInvoice = this.setProductInvoice.bind(this);
     this.setTotalInvoice = this.setTotalInvoice.bind(this);
     this.onSaving = this.onSaving.bind(this);
@@ -23,13 +23,13 @@ export class InvoiceDetailComponent implements OnInit {
   ngOnInit() {
     this.loadProducts();
     this.route.queryParams.subscribe(params => {
-      this.invoiceId = params["id"];
-      this.loadGrid(this.invoiceId);
+      this.id = params["id"];
+      this.loadGrid(this.id);
     });
   }
 
   loadGrid(invoiceId: number) {
-    this.invoiceDetailServices.GetInvoiceById(this.invoiceId).subscribe(result => {
+    this.invoiceDetailServices.getInvoiceDetailFromById(this.id).subscribe(result => {
       if (result.success)
         this.invoiceDetail = result.data;
       else
@@ -37,7 +37,7 @@ export class InvoiceDetailComponent implements OnInit {
     }, error => console.error(error));
   }
   loadProducts() {
-    this.productServices.GetProducts().subscribe(result => {
+    this.productServices.getProducts().subscribe(result => {
       if (result.success)
         this.products = result.data;
       else
@@ -56,6 +56,7 @@ export class InvoiceDetailComponent implements OnInit {
     newData.totalValue = quantity * currentRowData.productValue;
     newData.productQuantity = quantity;
   }
+
   saveInvoiceDetail(changes: any, grid: any) {
     var data = changes[0].data;
     var invoiceDetailId = changes[0].key;
@@ -68,7 +69,7 @@ export class InvoiceDetailComponent implements OnInit {
     }
     else if (type === "insert") {
       invoice.id = 0;
-      invoice.invoice = this.invoiceId;
+      invoice.invoice = this.id;
       invoice.creationDate = new Date();
     }
 
@@ -89,14 +90,15 @@ export class InvoiceDetailComponent implements OnInit {
       }
     });
 
-    this.invoiceDetailServices.SaveInvoiceDetail(invoice).subscribe(result => {
+    this.invoiceDetailServices.saveInvoiceDetail(invoice).subscribe(result => {
       if (result.success) {
         grid.cancelEditData();
-        this.loadGrid(result.data.invoice);
         grid.refresh(true);
+
+        this.loadGrid(result.data.invoice);
         this.showInfo(result.message);
-      } else
-      {
+
+      } else {
         this.showError(result.message);
       }
     }, error => console.error(error));
@@ -105,44 +107,36 @@ export class InvoiceDetailComponent implements OnInit {
   onSaving(e: any) {
     e.cancel = true;
 
-    if (e.changes.length) {
+    if (e.changes.length)
+    {
       var type = e.changes[0].type;
-
-      if (type === "update" || type == "insert") {
+      var invoiceDetailId = e.changes[0].key;
+      if (type === "update" || type == "insert")
         this.saveInvoiceDetail(e.changes, e.component);
-      } else if (type === "remove") {
-        var invoiceDetailId = e.changes[0].key;
-
-        this.invoiceDetailServices.DeleteInvoiceDetail(invoiceDetailId).subscribe(result => {
-          if (result.success)
-          {
-            this.showInfo(result.message);
-            var component = e.component;
-            component.cancelEditData();
-            component.refresh(true);
-            this.loadGrid(this.invoiceId);   
-            this.showInfo(result.message);
-          } else
-          {
-            this.showError(result.message);
-          }
-        }, error => console.error(error));
-      }
+      else if (type === "remove") 
+        this.deleteInvoiceDetail(invoiceDetailId, e.component);
+      
     }
   }
-  addRow(e: any) {
-   
-    e.data.productQuantity = 1;
-  }
-  showInfo(message: string)
+  deleteInvoiceDetail(invoiceDetailId: number, grid: any)
   {
-    this.isVisible = true;
-    this.type = 'info';
-    this.message = message;
+    this.invoiceDetailServices.deleteInvoiceDetail(invoiceDetailId).subscribe(result =>
+    {
+      if (result.success)
+      {
+        grid.cancelEditData();
+        grid.refresh(true);
+        this.showInfo(result.message);
+        this.loadGrid(this.id);
+
+      }
+      else
+      {
+        this.showError(result.message);
+      }
+    }, error => console.error(error));
   }
-  showError(message: string) {
-    this.isVisible = true;
-    this.type = 'error';
-    this.message = message;
+  addRow(e: any) {
+    e.data.productQuantity = 1;
   }
 }

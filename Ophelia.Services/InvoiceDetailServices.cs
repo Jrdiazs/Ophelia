@@ -2,6 +2,7 @@
 using Ophelia.Models;
 using Ophelia.Services.ModelView;
 using Ophelia.Services.Responses;
+using Ophelia.Tools;
 using System;
 using System.Collections.Generic;
 
@@ -25,7 +26,7 @@ namespace Ophelia.Services
                 var invoiceModel = Mapper.Map<InvoiceDetail>(invoice);
                 if (invoiceModel.ProductQuantity == 0)
                 {
-                    response.Error("La cantidad debe ser mayor a 0");
+                    response.Error("The amount must be greater than 0");
                     return response;
                 }
 
@@ -36,13 +37,13 @@ namespace Ophelia.Services
 
                 if (quantityNow < allowedAmount)
                 {
-                    response.Error("No se puede realizar la compra, ya que queda el numero de productos minimos de inventario");
+                    response.Error("The purchase cannot be made, since the number of minimum inventory products remains");
                     return response;
                 }
 
                 if (quantityNow < 0)
                 {
-                    response.Error("No se puede realizar la compra ya que no queda disponible el producto en inventario");
+                    response.Error("The purchase cannot be made as the product is not available in inventory");
                     return response;
                 }
 
@@ -52,10 +53,11 @@ namespace Ophelia.Services
 
                 invoiceModel = _unitOfWork.InvoiceDetailRepository.SaveInvoiceDetail(invoiceModel);
                 invoice.Invoice = invoiceModel.InvoiceDetailId;
-                response.Ok(invoice, "Detalle de compra guardado correctamente");
+                response.Ok(invoice, "Purchase detail saved correctly");
             }
             catch (Exception ex)
             {
+                Logger.ErrorFatal(ex);
                 response.Error(ex);
             }
             return response;
@@ -74,6 +76,7 @@ namespace Ophelia.Services
             }
             catch (Exception ex)
             {
+                Logger.ErrorFatal(ex);
                 response.Error(ex);
             }
             return response;
@@ -86,10 +89,11 @@ namespace Ophelia.Services
             try
             {
                 var rowsAffected = _unitOfWork.InvoiceDetailRepository.DeleteInvoiceDetail(invoiceDetailId);
-                response.Ok(rowsAffected,"Detalle Eliminado correctamente");
+                response.Ok(rowsAffected, "Detail successfully removed");
             }
             catch (Exception ex)
             {
+                Logger.ErrorFatal(ex);
                 response.Error(ex);
             }
             return response;
